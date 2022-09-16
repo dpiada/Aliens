@@ -19,24 +19,24 @@ class AlienInvasion:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-            if event.type == pygame.KEYDOWN:
-                if event.type == pygame.K_DOWN:
-                    self.ship.moving_down = True
-                elif event.type == pygame.K_UP:
-                    self.ship.moving_up = True                    
-                elif event.type == pygame.K_LEFT:
-                    self.ship.moving_left = True
-                elif event.type == pygame.K_RIGHT:
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT:
                     self.ship.moving_right = True
-            if event.type == pygame.KEYUP:
-                if event.type == pygame.K_DOWN:
-                    self.ship.moving_down = False
-                elif event.type == pygame.K_UP:
-                    self.ship.moving_up = False                    
-                elif event.type == pygame.K_LEFT:
-                    self.ship.moving_left = False
-                elif event.type == pygame.K_RIGHT:
+                elif event.key == pygame.K_LEFT:
+                    self.ship.moving_left = True
+                elif event.key == pygame.K_DOWN:
+                    self.ship.moving_down = True
+                elif event.key == pygame.K_UP:
+                    self.ship.moving_up = True
+            elif event.type == pygame.KEYUP:
+                if event.key == pygame.K_RIGHT:
                     self.ship.moving_right = False
+                elif event.key == pygame.K_LEFT:
+                    self.ship.moving_left = False
+                elif event.key == pygame.K_DOWN:
+                    self.ship.moving_down = False
+                elif event.key == pygame.K_UP:
+                    self.ship.moving_up = False
 
     def _update_screen(self):
         self.screen.fill(self.settings.bg_color)
@@ -46,6 +46,7 @@ class AlienInvasion:
     def run_game(self):
         while True:
             self._check_events()
+            self.ship.update()
             self._update_screen()
     
 
